@@ -2405,11 +2405,10 @@ class ConfigFlow(ConfigEntryBaseFlow):
             self.context["unique_id"] = None
             return None
 
-        if raise_on_progress:
-            if self._async_in_progress(
-                include_uninitialized=True, match_context={"unique_id": unique_id}
-            ):
-                raise data_entry_flow.AbortFlow("already_in_progress")
+        if raise_on_progress and self._async_in_progress(
+            include_uninitialized=True, match_context={"unique_id": unique_id}
+        ):
+            raise data_entry_flow.AbortFlow("already_in_progress")
 
         self.context["unique_id"] = unique_id
 
