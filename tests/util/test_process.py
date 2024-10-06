@@ -23,7 +23,10 @@ async def test_kill_process(hass: HomeAssistant) -> None:
     )
     pid = sleeper.pid
 
-    assert os.kill(pid, 0) is None
+    try:
+        os.kill(pid, 0)
+    except OSError:
+        pytest.fail(f"Exception raised when killing process: {pid}")
 
     process.kill_subprocess(sleeper)
 

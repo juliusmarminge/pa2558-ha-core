@@ -721,7 +721,7 @@ async def websocket_add_node(
         }
         connection.send_message(
             websocket_api.event_message(
-                msg[ID], {"event": "node found", "node": node_details}
+                msg[ID], {"event": event["event"], "node": node_details}
             )
         )
 
@@ -1258,7 +1258,7 @@ async def websocket_replace_failed_node(
         }
         connection.send_message(
             websocket_api.event_message(
-                msg[ID], {"event": "node found", "node": node_details}
+                msg[ID], {"event": event["event"], "node": node_details}
             )
         )
 
